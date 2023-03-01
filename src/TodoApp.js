@@ -4,28 +4,31 @@ import { TodoSearch } from './components/TodoSearch';
 import { TodoList } from './components/TodoList';
 import { TodoItem } from './components/TodoItem';
 import './TodoApp.css'
+import React from "react";
 
-
-const todoList = [
+const defaultTodoList = [
   {text: 'Cortar cebolla', completed: true},
   {text: 'Curso de intro a React', completed: false},
   {text: 'Llorar', completed: false},
-  {text: 'Llorar', completed: false},
-
-
+  {text: 'Llorar2', completed: false},
 ]
 
-function TodoApp(props) {
+function TodoApp() {
+  const [searchValue, setSearchValue] = React.useState("");
+  const [todoList, setTodoList] = React.useState(defaultTodoList);
+  const completedTodos = todoList.filter(todo => !!todo.completed).length;
+  const totalTodos = todoList.length;
+  const filteredResult = defaultTodoList.filter(todo => todo.text.includes(searchValue));
   return (
     <div className='TodoApp'>
-      <TodoSearch/>
+      <TodoSearch searchValue={searchValue} setSearchValue={setSearchValue}/>
       <TodoControls/>
       <TodoList>
-        {todoList.map(( item ) => (
+        {filteredResult.map(( item ) => (
           <TodoItem key={item.text} text={item.text} completed={item.completed}/>
         ))}
       </TodoList>
-      <TodoCounter/>
+      <TodoCounter totalTodos={totalTodos} completedTodos={completedTodos}/>
     </div>
   );
 }
