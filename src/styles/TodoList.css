@@ -1,0 +1,25 @@
+.TodoList {
+  margin-top: 20px;
+  margin-right: 5px;
+  padding: 0 20px 10px 25px;
+}
+.TodoList.overflow {
+  overflow-y: auto;
+  max-height: 300px;
+}
+.TodoList::-webkit-scrollbar {
+  width: 5px;
+}
+.TodoList::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 25px;
+}
+.TodoList::-webkit-scrollbar-thumb {
+  background: #e6e6e6;
+  border-radius: 25px;
+}
+.TodoList .TodoItem:last-child {
+    margin-bottom: 0;
+    border-bottom: 0;
+    padding-bottom: 0;
+  }

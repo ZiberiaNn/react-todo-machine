@@ -1,12 +1,11 @@
 import React from "react";
+import "./../styles/TodoList.css";
 
 function TodoList(props){
     return (
-        <section>
-            <ul>
+            <ul  className="TodoList">
                 {props.children}
             </ul>
-        </section>
     );
 }
 

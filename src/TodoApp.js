@@ -1,30 +1,33 @@
 import { TodoCounter } from './components/TodoCounter';
+import { TodoControls } from './components/TodoControls';
 import { TodoSearch } from './components/TodoSearch';
 import { TodoList } from './components/TodoList';
 import { TodoItem } from './components/TodoItem';
-import { CreateTodoButton } from './components/CreateTodoButton';
-
+import './TodoApp.css'
 
 
 const todoList = [
   {text: 'Cortar cebolla', completed: false},
   {text: 'Curso de intro a React', completed: false},
-  {text: 'Llorar', completed: false}
+  {text: 'Llorar', completed: false},
+  {text: 'Llorar', completed: false},
+
+
 ]
 
-function App(props) {
+function TodoApp(props) {
   return (
-    <>
-      <TodoCounter/>
+    <div className='TodoApp'>
       <TodoSearch/>
+      <TodoControls/>
       <TodoList>
         {todoList.map(( item ) => (
           <TodoItem key={item.text} text={item.text}/>
         ))}
       </TodoList>
-      <CreateTodoButton/>
-    </>
+      <TodoCounter/>
+    </div>
   );
 }
 
-export default App;
+export default TodoApp;
