@@ -7,7 +7,7 @@ import './TodoApp.css'
 
 
 const todoList = [
-  {text: 'Cortar cebolla', completed: false},
+  {text: 'Cortar cebolla', completed: true},
   {text: 'Curso de intro a React', completed: false},
   {text: 'Llorar', completed: false},
   {text: 'Llorar', completed: false},
@@ -22,7 +22,7 @@ function TodoApp(props) {
       <TodoControls/>
       <TodoList>
         {todoList.map(( item ) => (
-          <TodoItem key={item.text} text={item.text}/>
+          <TodoItem key={item.text} text={item.text} completed={item.completed}/>
         ))}
       </TodoList>
       <TodoCounter/>
