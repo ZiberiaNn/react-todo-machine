@@ -1,23 +1,17 @@
-import { TodoCounter } from "./components/TodoCounter";
-import { TodoControls } from "./components/TodoControls";
-import { TodoSearch } from "./components/TodoSearch";
-import { TodoList } from "./components/TodoList";
-import { TodoItem } from "./components/TodoItem";
-import { useLocalStorage } from "./customHooks/useLocalStorage";
-
 import "./TodoApp.css";
 import React from "react";
+import { useLocalStorage } from "./customHooks/useLocalStorage";
 
-const defaultTodoList = [
-  { text: "Cortar cebolla", completed: true },
-  { text: "Curso de intro a React", completed: false },
-  { text: "Llorar", completed: false },
-  { text: "Llorar2", completed: false },
-];
+import { TodoUI } from "./components/TodoUI";
+
 
 function TodoApp() {
-  const [todoList, saveTodoList] = useLocalStorage("TODOLIST_V1", defaultTodoList);
-
+  const {
+    item: todoList,
+    saveItem: saveTodoList,
+    loading,
+    error
+  } = useLocalStorage("TODOLIST_V1", []);
   const [searchValue, setSearchValue] = React.useState("");
   const completedTodos = todoList.filter((todo) => !!todo.completed).length;
   const totalTodos = todoList.length;
@@ -34,7 +28,6 @@ function TodoApp() {
     });
   }
 
-
   const completeTodo = (text) => {
     const todoIndex = todoList.findIndex((todo) => todo.text === text);
     const newTodoList = [...todoList];
@@ -49,20 +42,15 @@ function TodoApp() {
 
   return (
     <div className="TodoApp">
-      <TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} />
-      <TodoControls />
-      <TodoList>
-        {filteredResult.map((todo) => (
-          <TodoItem
-            key={todo.text}
-            text={todo.text}
-            completed={todo.completed}
-            onComplete={() => completeTodo(todo.text)}
-            onDelete={() => deleteTodo(todo.text)}
-          />
-        ))}
-      </TodoList>
-      <TodoCounter totalTodos={totalTodos} completedTodos={completedTodos} />
+      <TodoUI loading={loading}
+        error={error}
+        totalTodos={totalTodos}
+        completedTodos={completedTodos}
+        searchValue={searchValue}
+        setSearchValue={setSearchValue}
+        filteredResult={filteredResult}
+        completeTodo={completeTodo}
+        deleteTodo={deleteTodo} />
     </div>
   );
 }

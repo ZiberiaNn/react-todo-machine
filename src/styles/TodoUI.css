@@ -1,0 +1,15 @@
+.TodoUI {
+  max-width: 405px;
+  max-height: 60vh;
+  overflow-y: auto;
+  padding: 28px 0 30px;
+  margin: 20vh auto;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+::selection{
+  color: #fff;
+  background: #3C87FF;
+}
