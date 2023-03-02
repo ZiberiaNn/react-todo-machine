@@ -3,29 +3,22 @@ import { TodoControls } from "./components/TodoControls";
 import { TodoSearch } from "./components/TodoSearch";
 import { TodoList } from "./components/TodoList";
 import { TodoItem } from "./components/TodoItem";
+import { useLocalStorage } from "./customHooks/useLocalStorage";
+
 import "./TodoApp.css";
 import React from "react";
 
-// const defaultTodoList = [
-//   { text: "Cortar cebolla", completed: true },
-//   { text: "Curso de intro a React", completed: false },
-//   { text: "Llorar", completed: false },
-//   { text: "Llorar2", completed: false },
-// ];
+const defaultTodoList = [
+  { text: "Cortar cebolla", completed: true },
+  { text: "Curso de intro a React", completed: false },
+  { text: "Llorar", completed: false },
+  { text: "Llorar2", completed: false },
+];
 
 function TodoApp() {
-  const localStorageTodoList = localStorage.getItem("TODOLIST_V1");
-  let parsedTodoList;
-
-  if (!localStorageTodoList) {
-    localStorage.setItem("TODOLIST_V1", JSON.stringify([]));
-    parsedTodoList = [];
-  } else {
-    parsedTodoList = JSON.parse(localStorageTodoList);
-  }
+  const [todoList, saveTodoList] = useLocalStorage("TODOLIST_V1", defaultTodoList);
 
   const [searchValue, setSearchValue] = React.useState("");
-  const [todoList, setTodoList] = React.useState(parsedTodoList);
   const completedTodos = todoList.filter((todo) => !!todo.completed).length;
   const totalTodos = todoList.length;
 
@@ -41,13 +34,9 @@ function TodoApp() {
     });
   }
 
-  const saveTodoList = (newTodoList) => {
-    setTodoList(newTodoList);
-    localStorage.setItem("TODOLIST_V1", JSON.stringify(newTodoList));
-  }
 
   const completeTodo = (text) => {
-    const todoIndex = todoList.findIndex((todo) => todo.text == text);
+    const todoIndex = todoList.findIndex((todo) => todo.text === text);
     const newTodoList = [...todoList];
     newTodoList[todoIndex].completed = !newTodoList[todoIndex].completed;
     saveTodoList(newTodoList);
