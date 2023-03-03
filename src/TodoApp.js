@@ -5,11 +5,10 @@ import { TodoUI } from "./components/TodoUI";
 
 
 function TodoApp() {
-  const hi ="hi";
   return (
     <div className="TodoApp">
 
-      <TodoProvider value={hi}>
+      <TodoProvider>
         <TodoUI />
       </TodoProvider>
     </div>

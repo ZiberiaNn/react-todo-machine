@@ -1,8 +1,12 @@
 import React from "react";
-import './../styles/CreateTodoButton.css';
+import "./../styles/CreateTodoButton.css";
 
-function CreateTodoButton(){
-    return ;
+function CreateTodoButton() {
+  return (
+    <button className="clear-btn" onClick={() => console.log("hi")}>
+      Add
+    </button>
+  );
 }
 
 export { CreateTodoButton };
