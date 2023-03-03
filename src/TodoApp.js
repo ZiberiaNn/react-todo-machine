@@ -1,6 +1,6 @@
 import "./TodoApp.css";
 import React from "react";
-import { TodoProvider } from "./components/TodoContext";
+import { TodoProvider } from "./todoContext/TodoContext";
 import { TodoUI } from "./components/TodoUI";
 
 
