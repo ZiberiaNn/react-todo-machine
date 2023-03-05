@@ -12,21 +12,36 @@ function TodoProvider(props) {
     } = useLocalStorage("TODOLIST_V1", []);
     const [searchValue, setSearchValue] = React.useState("");
     const [openModal, setOpenModal] = React.useState(false);
+    const [filterValue, setFilterValue] = React.useState("all");
 
     const completedTodos = todoList.filter((todo) => !!todo.completed).length;
     const totalTodos = todoList.length;
 
     let filteredResult = [];
 
-    if (searchValue.length < 1) {
-        filteredResult = todoList;
-    } else {
-        filteredResult = todoList.filter((todo) => {
-            const todoText = todo.text.toLowerCase();
-            const searchText = searchValue.toLowerCase();
-            return todoText.includes(searchText);
-        });
+    const filterResult = () => {
+        if (filterValue==="all") {
+            if (searchValue.length < 1) {
+                filteredResult = todoList;
+            } else {
+                filteredResult = todoList.filter((todo) => {
+                    const todoText = todo.text.toLowerCase();
+                    const searchText = searchValue.toLowerCase();
+                    return todoText.includes(searchText);
+                });
+            }
+        } else {
+            let completed;
+            if (filterValue === "completed") completed = true;
+            else if(filterValue === "pending") completed = false;
+            filteredResult = todoList.filter((todo) => {
+                const todoText = todo.text.toLowerCase();
+                const searchText = searchValue.toLowerCase();
+                return todoText.includes(searchText) && todo.completed===completed;
+            });
+        }
     }
+    filterResult();
 
     const completeTodo = (text) => {
         const todoIndex = todoList.findIndex((todo) => todo.text === text);
@@ -41,7 +56,7 @@ function TodoProvider(props) {
     };
 
 
-    const deleteAllTodos = (text) => {
+    const deleteAllTodos = () => {
         saveTodoList([]);
     };
 
@@ -68,7 +83,8 @@ function TodoProvider(props) {
             openModal,
             setOpenModal,
             addTodo,
-            deleteAllTodos
+            deleteAllTodos,
+            setFilterValue
         }}>
             {props.children}
         </TodoContext.Provider>

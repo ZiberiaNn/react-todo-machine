@@ -44,3 +44,8 @@
 .TodoControls-btn:active {
   transform: scale(0.93);
 }
+
+.selected {
+  color: #1798fb;
+  text-decoration: underline;
+}

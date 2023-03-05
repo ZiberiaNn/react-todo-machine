@@ -20,13 +20,13 @@ function TodoUI() {
         setOpenModal,
     } = React.useContext(TodoContext);
     return (
-    <>
+        <>
             <TodoSearch />
-            <TodoControls/>
+            <TodoControls />
             <TodoList>
                 {loading && <p>Loading</p>}
                 {error && <p>error</p>}
-                {!loading && !filteredResult.length && <p>Ingresa ToDo</p>}
+                {!loading && !filteredResult.length && <p>No Tasks found.</p>}
                 {filteredResult.map((todo) => (
                     <TodoItem
                         key={todo.text}
@@ -38,14 +38,14 @@ function TodoUI() {
                 ))}
             </TodoList>
             <TodoCounter />
-            <TodoButton text={"Add Task"} onClick={()=>setOpenModal(true)}/>
-                {openModal && (
-                    <TodoModal>
-                        <TodoAdder />
-                    </TodoModal>
-                )}
-            </>
-            );
+            <TodoButton text={"Add Task"} onClick={() => setOpenModal(true)} />
+            {openModal && (
+                <TodoModal>
+                    <TodoAdder />
+                </TodoModal>
+            )}
+        </>
+    );
 }
 
-            export {TodoUI};
+export { TodoUI };
