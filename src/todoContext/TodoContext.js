@@ -40,6 +40,11 @@ function TodoProvider(props) {
         saveTodoList(newTodoList);
     };
 
+
+    const deleteAllTodos = (text) => {
+        saveTodoList([]);
+    };
+
     const addTodo = (text) => {
         const todo = {
             text: text,
@@ -62,7 +67,8 @@ function TodoProvider(props) {
             deleteTodo,
             openModal,
             setOpenModal,
-            addTodo
+            addTodo,
+            deleteAllTodos
         }}>
             {props.children}
         </TodoContext.Provider>
