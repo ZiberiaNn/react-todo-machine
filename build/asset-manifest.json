@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/ZiberiaNn/react-todo-machine/static/css/main.93f112d0.css",
+    "main.js": "/ZiberiaNn/react-todo-machine/static/js/main.93f75af5.js",
+    "index.html": "/ZiberiaNn/react-todo-machine/index.html",
+    "main.93f112d0.css.map": "/ZiberiaNn/react-todo-machine/static/css/main.93f112d0.css.map",
+    "main.93f75af5.js.map": "/ZiberiaNn/react-todo-machine/static/js/main.93f75af5.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.93f112d0.css",
+    "static/js/main.93f75af5.js"
+  ]
+}
