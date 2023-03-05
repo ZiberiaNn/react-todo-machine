@@ -1,7 +1,7 @@
 .TodoControls {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
   flex-wrap: wrap-reverse;
 }
 .TodoControls {
@@ -20,16 +20,8 @@
   color: #3c87ff;
 }
 
-.TodoControls .btn-container {
-  display: inline-flex;
-}
-
-.TodoControls .clear-btn:first-child {
-  margin-right: 10%;
-  margin-left: 5;
-}
-
 .TodoControls .clear-btn {
+  margin-left: 8px;
   border: none;
   opacity: 0.6;
   outline: none;

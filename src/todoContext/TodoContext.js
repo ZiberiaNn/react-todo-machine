@@ -39,6 +39,16 @@ function TodoProvider(props) {
         const newTodoList = todoList.filter((todo) => todo.text !== text);
         saveTodoList(newTodoList);
     };
+
+    const addTodo = (text) => {
+        const todo = {
+            text: text,
+            completed: false
+        }
+        const newTodoList = [...todoList,
+            todo];
+        saveTodoList(newTodoList);
+    }
     return (
         <TodoContext.Provider value={{
             loading,
@@ -52,6 +62,7 @@ function TodoProvider(props) {
             deleteTodo,
             openModal,
             setOpenModal,
+            addTodo
         }}>
             {props.children}
         </TodoContext.Provider>

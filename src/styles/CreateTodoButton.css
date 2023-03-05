@@ -1,4 +1,10 @@
 .CreateTodoButton {
+  display: flex;
+  justify-content: center;
+  padding-top: 12px;
+}
+
+.CreateTodoButton .add-btn{
   border: none;
   opacity: 0.6;
   outline: none;
@@ -11,6 +17,6 @@
   transition: transform 0.25s ease;
   background: linear-gradient(135deg, #1798fb 0%, #2d5cfe 100%);
 }
-.CreateTodoButton:hover {
+.add-btn:hover {
   background: linear-gradient(135deg, #1798fb 0%, #3c87ff 100%);
 }
